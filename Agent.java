@@ -2,7 +2,7 @@ import java.util.*;
 
 enum EVENT_TYPE
 {
-    OP1, OP2;
+    OP, OP1, OP2;
 }
 
 class Agent
@@ -36,6 +36,7 @@ class Agent
 	{
 		for(State s: registrations.get(e))
 		{
+			System.out.println("Handling");
 			s.handle_event();
 		}
 	}

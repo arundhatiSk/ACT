@@ -1,5 +1,18 @@
+import java.util.Queue;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+
+
 class Client
 {
+
+	private static dispatchStrategy dis_strat;
+
+	public static void notify1()
+	{
+		dis_strat.notify1();
+	}
+
 	public static void main(String[] args)
 	{
 		Agent agent = Agent.getInstance();
@@ -9,18 +22,25 @@ class Client
 		Op2State act2 = new Op2State(345);
 		agent.register(act2 , EVENT_TYPE.OP2);
 
-		new Thread(new Runnable() {
-		    public void run() {
-		        (new Service1()).performService();
-		    }
-		}).start();
-
-		new Thread(new Runnable() {
-		    public void run() {
-		        (new Service2()).performService();
-		    }
-		}).start();
-
 		
+
+		Service s1 = new Service1();
+		Service s2 = new Service2();
+		dis_strat = new FIFO();
+
+		dis_strat.dispatchService(s1);
+		try
+		{
+			TimeUnit.SECONDS.sleep(7);
+		}
+		catch (InterruptedException e)
+		{
+			System.out.println(e);
+		}
+		dis_strat.dispatchService(s2);
+		while(true)
+		{
+
+		}
 	}
 }

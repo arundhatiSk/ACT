@@ -1,12 +1,19 @@
 import java.util.concurrent.TimeUnit;
 
-interface Service
+abstract class Service
 {
-	public void performService();
+	private EVENT_TYPE e = EVENT_TYPE.OP;
+	abstract public void performService();
+
+	public EVENT_TYPE getEventType()
+	{
+		return e;
+	}
 }
 
-class Service1 implements Service
+class Service1 extends Service
 {
+	private static final EVENT_TYPE e = EVENT_TYPE.OP1;
 	public void performService() 
 	{
 		try
@@ -18,15 +25,26 @@ class Service1 implements Service
 			System.out.println(e);
 		}
 		Agent a = Agent.getInstance();
-		a.notify(EVENT_TYPE.OP1);
+		a.notify(e);
+	}
+
+	public EVENT_TYPE getEventType()
+	{
+		return e;
 	}
 }
 
-class Service2 implements Service
+class Service2 extends Service
 {
+	private static final EVENT_TYPE e = EVENT_TYPE.OP2;
 	public void performService()
 	{
 		Agent a = Agent.getInstance();
-		a.notify(EVENT_TYPE.OP2);
+		a.notify(e);
+	}
+
+	public EVENT_TYPE getEventType()
+	{
+		return e;
 	}
 }
