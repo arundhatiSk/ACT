@@ -2,10 +2,10 @@ import java.util.concurrent.TimeUnit;
 
 abstract class Service
 {
-	private EVENT_TYPE e = EVENT_TYPE.OP;
+	private EventType e = EventType.OP;
 	abstract public void performService();
 
-	public EVENT_TYPE getEventType()
+	public EventType getEventType()
 	{
 		return e;
 	}
@@ -13,7 +13,7 @@ abstract class Service
 
 class Service1 extends Service
 {
-	private static final EVENT_TYPE e = EVENT_TYPE.OP1;
+	private static final EventType e = EventType.OP1;
 	public void performService() 
 	{
 		try
@@ -29,7 +29,7 @@ class Service1 extends Service
 		a.notify(e);
 	}
 
-	public EVENT_TYPE getEventType()
+	public EventType getEventType()
 	{
 		return e;
 	}
@@ -37,14 +37,14 @@ class Service1 extends Service
 
 class Service2 extends Service
 {
-	private static final EVENT_TYPE e = EVENT_TYPE.OP2;
+	private static final EventType e = EventType.OP2;
 	public void performService()
 	{
 		Agent a = Agent.getInstance();
 		a.notify(e);
 	}
 
-	public EVENT_TYPE getEventType()
+	public EventType getEventType()
 	{
 		return e;
 	}

@@ -50,7 +50,7 @@ class PQueue extends dispatchStrategy
 			Service current = PQ.get(maxPrior).get(0);
 			//PQ.get(maxPrior).remove(0);
 			PQ.remove(maxPrior);
-			System.out.println("starting service "+maxPrior);
+			System.out.println("Starting service "+maxPrior);
 			new Thread(new Runnable() {
 					public void run() {
 						System.out.println("Starting service");
@@ -95,7 +95,7 @@ class FIFO extends dispatchStrategy
 		{
 			new Thread(new Runnable() {
 			    public void run() {
-			    	System.out.println("Starting service");
+			    	System.out.println("Starting service " + s.getEventType() + " " + s);
 			        s.performService();
 			    }
 			}).start();
@@ -103,7 +103,7 @@ class FIFO extends dispatchStrategy
 		}
 		else
 		{
-			System.out.println("Adding to queue");
+			System.out.println("Adding to queue " + s.getEventType() + " " + s);
 			queue.add(s);
 			System.out.println();
 		}
@@ -114,8 +114,9 @@ class FIFO extends dispatchStrategy
 		current_running--;
 		if (!queue.isEmpty())
 		{
-			System.out.println("Removing from queue");
-			dispatchService(queue.remove());
+			Service rem = queue.remove();
+			System.out.println("Removing from queue " + rem.getEventType() + " " + rem);
+			dispatchService(rem);
 		}
 	}
 }

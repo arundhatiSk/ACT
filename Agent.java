@@ -1,14 +1,9 @@
 import java.util.*;
 
-enum EVENT_TYPE
-{
-    OP, OP1, OP2;
-}
-
 class Agent
 {
 	private static Agent agent;
-	private HashMap<EVENT_TYPE, ArrayList<State>> registrations;
+	private HashMap<EventType, ArrayList<State>> registrations;
 	public static Agent getInstance()
 	{
 		if (agent == null)
@@ -21,10 +16,10 @@ class Agent
 
 	}
 
-	public void register(State act, EVENT_TYPE e)
+	public void register(State act, EventType e)
 	{
 		if (registrations == null)
-			registrations = new HashMap<EVENT_TYPE, ArrayList<State>>();
+			registrations = new HashMap<EventType, ArrayList<State>>();
 		if (registrations.get(e) == null){
 			registrations.put(e, new ArrayList<State>());
 
@@ -32,7 +27,7 @@ class Agent
 		registrations.get(e).add(act);
 	}
 
-	public void notify(EVENT_TYPE e)
+	public void notify(EventType e)
 	{
 		for(State s: registrations.get(e))
 		{

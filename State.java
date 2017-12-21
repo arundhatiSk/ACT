@@ -6,7 +6,7 @@ abstract class State
 class Op1State extends State
 {
 	private String name;
-	private final EVENT_TYPE e = EVENT_TYPE.OP1;
+	private final EventType e = EventType.OP1;
 
 	public Op1State(String name)
 	{
@@ -23,7 +23,7 @@ class Op1State extends State
 class Op2State extends State
 {
 	private int price;
-	private final EVENT_TYPE e = EVENT_TYPE.OP2;
+	private final EventType e = EventType.OP2;
 
 	public Op2State(int price)
 	{
