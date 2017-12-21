@@ -16,7 +16,7 @@ class Op1State extends State
 	public void handle_event()
 	{
 		System.out.println(name);
-		Client.notify1();
+		Dispatch.notify1();
 	}
 }
 
@@ -33,6 +33,6 @@ class Op2State extends State
 	public void handle_event()
 	{
 		System.out.println(price);
-		Client.notify1();
+		Dispatch.notify1();
 	}
 }

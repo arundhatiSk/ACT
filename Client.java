@@ -6,12 +6,7 @@ import java.util.concurrent.TimeUnit;
 class Client
 {
 
-	private static dispatchStrategy dis_strat;
-
-	public static void notify1()
-	{
-		dis_strat.notify1();
-	}
+	private static Dispatch dispatch = new Dispatch("PQ");
 
 	public static void main(String[] args)
 	{
@@ -26,9 +21,11 @@ class Client
 
 		Service s1 = new Service1();
 		Service s2 = new Service2();
-		dis_strat = new FIFO();
-
-		dis_strat.dispatchService(s1);
+		Service s3 = new Service2();
+		dispatch.setPriority(1,s1);
+		dispatch.setPriority(3,s2);
+		dispatch.setPriority(4,s3);
+		/*dispatch.dispatchService(s1);
 		try
 		{
 			TimeUnit.SECONDS.sleep(7);
@@ -37,7 +34,10 @@ class Client
 		{
 			System.out.println(e);
 		}
-		dis_strat.dispatchService(s2);
+		dispatch.dispatchService(s2);
+		dispatch.dispatchService(s3);*/
+		Service[] services = {s1,s2,s3};
+		dispatch.dispatchService(services);
 		while(true)
 		{
 
