@@ -28,6 +28,7 @@ class PQueue extends dispatchStrategy
 	}
 	public void dispatchService(Service s)
 	{
+		System.out.println();
 		int p = processPriorities.get(s);
 		if (PQ.get(p) == null){
 			PQ.put(p, new ArrayList<Service>());
@@ -35,10 +36,6 @@ class PQueue extends dispatchStrategy
 		PQ.get(p).add(s);
 		if (current_running < cores)
 		{
-			for(int i:PQ.keySet())
-			{
-				System.out.println(i);
-			}
 			int maxPrior = 0;
 			for(int i : PQ.keySet())
 			{
@@ -48,9 +45,8 @@ class PQueue extends dispatchStrategy
 				}
 			}
 			Service current = PQ.get(maxPrior).get(0);
-			//PQ.get(maxPrior).remove(0);
 			PQ.remove(maxPrior);
-			System.out.println("Starting service "+maxPrior);
+			System.out.println("Starting service with priority "+maxPrior);
 			new Thread(new Runnable() {
 					public void run() {
 						System.out.println("Starting service");
@@ -58,6 +54,7 @@ class PQueue extends dispatchStrategy
 					}
 				}).start();
 			current_running++;
+			//System.out.println();
 		}
 		
 		

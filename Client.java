@@ -16,7 +16,7 @@ class Client
 		Service s2 = new Service2();
 		Service s3 = new Service2();
 		
-		Op1State act1 = new Op1State("Name");
+		Op1State act1 = new Op1State("abc");
 		agent.register(act1 , EventType.OP1);
 
 		Op2State act2 = new Op2State(345);
