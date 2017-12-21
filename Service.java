@@ -24,7 +24,6 @@ class Service1 extends Service
 		{
 			System.out.println(e);
 		}
-		//singleton 
 		Agent a = Agent.getInstance();
 		a.notify(e);
 	}
